@@ -21,7 +21,7 @@ def load_data(file):
 upload_file = st.sidebar.file_uploader("Choose a file")
 
 if upload_file is None:
-    st.info("Upload a file through config",icon = "i")
+    st.info("Upload a file through config", icon="ℹ️")
     st.stop()
 
 df = load_data(upload_file)
