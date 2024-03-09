@@ -32,7 +32,7 @@ with st.expander("Data Preview"):
 # VISUALIZATION METHODS
 #######################################
 
-############ BAR 1 left top
+############ plot 1
 
 import streamlit as st
 import pandas as pd
@@ -66,7 +66,7 @@ selected_rows = df.loc[[0, 1, 2, 3, 4, 5]]  # Include index 5 for Total Revenue
 plot_bar_revenue_chart(selected_rows, 'GL-CODE', 'Actual', 'Total Revenue')
 
 
-################# BAR 1 right top
+################# plot 2
 # Filter rows where 'GL-CODE' contains the word "Total"
 total_rows = df[df['GL-CODE'].str.contains('Sales', case=False, na=False) & ~df['GL-CODE'].str.contains('Revenue', case=False, na=False)]
 
@@ -80,7 +80,7 @@ else:
     st.warning("No rows found with 'GL-CODE' containing the word 'Total'.")
 
 
-################# BAR 2 left top
+################# plot 3
 def plot_bar_chart(data, category_col, value_cols, title):
     if all(col in data.columns for col in value_cols):
         fig = px.bar(data, x=category_col, y=value_cols, title=title, barmode='group', color_discrete_map={'Actual': 'blue', 'Budget': 'orange'})
@@ -107,7 +107,7 @@ selected_rows = df.loc[[0, 1, 2, 3, 4, 5]]
 # Plot Bar Chart for selected rows with Actual and Budget side-by-side
 plot_bar_chart(selected_rows, 'GL-CODE', ['Actual', 'Budget'], 'Total Revenue vs Expected Revenue')
 
-############### bar 2 right top
+############### plot 4
 
 def plot_bar_chart(data, category_col, value_cols, title):
     if all(col in data.columns for col in value_cols):
@@ -130,7 +130,7 @@ plot_bar_chart(selected_rows, 'GL-CODE', ['Actual', 'Budget'], 'Total Prime Cost
 
 
 
-##### BAR 3 left top
+##### plot 5
 
 # Filter rows where 'GL-CODE' contains the word "Total"
 total_rows = df[df['GL-CODE'].str.contains('Labor', case=False, na=False)] #& ~df['GL-CODE'].str.contains('Revenue', case=False, na=False)]
@@ -144,7 +144,7 @@ else:
     st.warning("No rows found with 'GL-CODE' containing the word 'Total'.")
 
 
-####### BAR 3 right top
+####### plot 6
 import streamlit as st
 
 # Assuming df is your DataFrame
@@ -155,7 +155,7 @@ selected_row = df.iloc[81]
 net_profit_value = selected_row['Actual']  # Replace 'Actual' with the actual column name for Net Profit
 st.metric(label="Net Profit", value=net_profit_value)
 
-####### BAR 3 left
+####### plot 7
 
 def plot_bar_chart(data, category_col, value_cols, title):
     if all(col in data.columns for col in value_cols):
@@ -179,5 +179,4 @@ selected_rows = df.loc[[81]]
 plot_bar_chart(selected_rows, 'GL-CODE', ['Actual', 'Budget', 'YTD Actual', 'YTD Budget'], 'Net Profit')
 
 
-########################### LAYOUT#########################
 
