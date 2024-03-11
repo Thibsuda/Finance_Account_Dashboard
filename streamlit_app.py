@@ -38,11 +38,15 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+
 def plot_bar_revenue_chart(data, category_col, value_col, title):
-    # Extract Total Revenue from iloc[5, 2]
+    # Find the index of the row containing "Total Revenue"
+    total_revenue_index = data.index[data['GL-CODE'] == 'Total Revenue'].tolist()[0]
+
+    # Extract Total Revenue from iloc[total_revenue_index, 1]
     total_revenue = None
-    if data.shape[0] > 5 and data.shape[1] > 2:
-        total_revenue = data.iloc[5, 1]
+    if total_revenue_index < data.shape[0] and data.shape[1] > 1:
+        total_revenue = data.iloc[total_revenue_index, 1]
 
     # Display st.metric for Total Revenue
     st.metric(label="Total Revenue", value=total_revenue)
@@ -52,18 +56,21 @@ def plot_bar_revenue_chart(data, category_col, value_col, title):
     # Add value labels on top of each bar
     fig.update_traces(text=data[value_col], textposition='outside')
     fig.update_layout(
-        width=200,  # Set the width of the plot
-        height=400,  # Set the height of the plot
+        width=200,  
+        height=400,  
         margin=dict(l=20, r=20, t=20, b=20),  # Adjust margin for positioning
         showlegend=True,
     )
     st.plotly_chart(fig, use_container_width=True)
 
-# Selecting specific rows based on condition (example: rows with index 0 and 1)
-selected_rows = df.loc[[0, 1, 2, 3, 4, 5]]  # Include index 5 for Total Revenue
+# Find the index of the row containing "Total Revenue" for the entire DataFrame
+total_revenue_index = df.index[df['GL-CODE'] == 'Total Revenue'].tolist()[0]
+
+# Selecting rows from the beginning to the row containing "Total Revenue" and including "Total Revenue"
+rows_before_total_revenue = df.loc[:total_revenue_index]
 
 # Plot Bar Chart for selected rows with Actual and Budget side-by-side
-plot_bar_revenue_chart(selected_rows, 'GL-CODE', 'Actual', 'Total Revenue')
+plot_bar_revenue_chart(rows_before_total_revenue, 'GL-CODE', 'Actual', 'Total Revenue')
 
 
 ################# plot 2
