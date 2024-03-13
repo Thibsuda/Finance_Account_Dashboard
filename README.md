@@ -4,7 +4,7 @@ Many accounting and financial software lack robust data analysis capabilities, r
 
 # Notice
 
-The P&L Report Dataframe is customized for each company, with the 'DEMO' serving as the primary dataset for this project. By seamlessly converting your data into our tailored dataframe, you can effortlessly explore and engage with workflow
+The P&L Report Dataframe is customized for each company, with the 'DEMO' serving as the primary dataset for this project. By seamlessly converting your data into our tailored dataframe, you can effortlessly explore and engage with our workflow.
 
 
 # Workflow for P&L Report Dashboard 
